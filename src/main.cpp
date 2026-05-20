@@ -1,3 +1,4 @@
+#include <chrono>
 #include <iostream>
 #include <string>
 #include "graph.h"
@@ -39,7 +40,6 @@ void printResult(const PathResult& result) {
 }
 
 int main(int argc, char* argv[]) {
-    // Argumente pruefen
     if (argc != 4) {
         std::cerr << "Verwendung: find_path <graphdatei> <start> <ziel>\n";
         std::cerr << "Beispiel:   find_path wien.txt \"Stephansplatz\" \"Praterstern\"\n";
@@ -60,7 +60,16 @@ int main(int argc, char* argv[]) {
 
     // Kuerzesten Pfad suchen
     std::cout << "\nSuche kuerzesten Weg von '" << start << "' nach '" << goal << "'...\n";
+
+    // Zeitmessung starten
+    auto startTime = std::chrono::high_resolution_clock::now();
+
     PathResult result = dijkstra(graph, start, goal);
+
+    // Zeitmessung stoppen
+    auto endTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
+    std::cout << "Laufzeit: " << duration.count() << " Mikrosekunden\n";
 
     // Ergebnis ausgeben
     printResult(result);

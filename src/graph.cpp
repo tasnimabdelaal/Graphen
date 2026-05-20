@@ -40,15 +40,14 @@ bool loadGraph(const std::string& filename, Graph& graph) {
         std::string token;
         while (ss >> token) {
             if (token[0] == '"') {
-                // Stationsname: Anführungszeichen entfernen
-                // Stationsname kann aus mehreren Woertern bestehen
+
                 std::string stationName = token.substr(1);
                 while (!stationName.empty() && stationName.back() != '"') {
                     std::string part;
                     if (!(ss >> part)) break;
                     stationName += " " + part;
                 }
-                // Abschliessendes " entfernen
+                
                 if (!stationName.empty() && stationName.back() == '"')
                     stationName.pop_back();
                 stations.push_back(stationName);
@@ -57,7 +56,7 @@ bool loadGraph(const std::string& filename, Graph& graph) {
                 try {
                     costs.push_back(std::stoi(token));
                 } catch (...) {
-                    // Ungueltige Zahl ignorieren
+                    
                 }
             }
         }

@@ -3,16 +3,16 @@
 #include <vector>
 #include <unordered_map>
 
-// Eine Kante im Graphen
+
 struct Edge {
-    int to;           // ID der Zielstation
-    int cost;         // Fahrzeit in Minuten
-    std::string line; // Linienname (z.B. "U1", "13A")
+    int to;           
+    int cost;         
+    std::string line; 
 };
 
 // Der Graph mit allen Stationen und Verbindungen
 struct Graph {
-    std::vector<std::vector<Edge>> adj;          // Adjazenzliste
+    std::vector<std::vector<Edge>> adj;          
     std::unordered_map<std::string, int> nameToId; // Stationsname -> ID
     std::vector<std::string> idToName;             // ID -> Stationsname
 };

@@ -31,15 +31,14 @@ PathResult dijkstra(const Graph& graph,
 
     // Distanzen: am Anfang alle unendlich
     std::vector<int> dist(n, INT_MAX);
-    // Vorgaenger: von welchem Knoten kamen wir?
+   
     std::vector<int> prev(n, -1);
     // Welche Linie haben wir verwendet um zu diesem Knoten zu kommen?
     std::vector<std::string> prevLine(n, "");
 
     dist[start] = 0;
 
-    // Priority Queue: (Distanz, KnotenID) - kleinste Distanz zuerst
-    // Mit pair<int,int> sortiert C++ automatisch nach dem ersten Element
+  
     std::priority_queue<std::pair<int,int>,
                         std::vector<std::pair<int,int>>,
                         std::greater<std::pair<int,int>>> pq;
@@ -52,7 +51,7 @@ PathResult dijkstra(const Graph& graph,
         // Veralteten Eintrag in der Queue ignorieren
         if (currentDist > dist[u]) continue;
 
-        // Ziel erreicht - fertig!
+        // Ziel erreicht 
         if (u == goal) break;
 
         // Alle Nachbarn von u pruefen
@@ -74,7 +73,7 @@ PathResult dijkstra(const Graph& graph,
         return result;
     }
 
-    // Pfad rekonstruieren: rueckwaerts vom Ziel zum Start
+    // Pfad rekonstruieren: rueckwärts vom Ziel zum Start
     std::vector<PathStep> reversedSteps;
     int current = goal;
     while (current != start) {
